@@ -33,4 +33,5 @@ void	set_WS_Addr(struct sockaddr_in *WS_Addr)
 {
 	WS_Addr->sin_family = AF_INET;
 	WS_Addr->sin_port = htons(SOCK_STREAM);
+	WS_Addr->sin_addr.s_addr = htonl(INADDR_ANY);
 }

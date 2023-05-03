@@ -19,13 +19,12 @@
 
 int main(int argc, char *argv[])
 {
-	WebS		WS;
-	struct sockaddr_in WS_addr;
-	//int			sockfd, n;
-	//int			sendbytes;
-	//std::string	sendline;
-	//std::string	recvline;
+	WebS	WS;
+	SAdd	WS_addr;
+	int			sendbytes;
+	std::string	sendline;
 
-	set_WS_Addr(&WS_addr);
 	starting(argc, argv, &WS, &WS_addr);
+	connecting(argv, &WS, &WS_Addr);
+	send_message(sendbytes, sendline, &WS, &WS_Addr);
 }

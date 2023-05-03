@@ -20,6 +20,7 @@
 # include <limits.h>
 # include <iostream>
 # include <algorithm>
+# include <strings.h>
 # include <arpa/inet.h>
 # include <sys/socket.h>
 # include <netinet/in.h>
@@ -29,4 +30,5 @@
 // Buffer size for reading
 # define BUFFERSIZE 4096
 
+#define SAdd struct sockaddr
 #endif

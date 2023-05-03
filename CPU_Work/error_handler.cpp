@@ -36,5 +36,17 @@ void    WebS::error_handler(int type, int subtype)
        		std::cout << "family";
 		}
 	}
+	else if (type == 3)
+	{
+		// connecting errors
+	}
+	else if (type == 4)
+	{
+		// send message errors
+	}
+	else if (type == 5)
+	{
+		//bind and listen errors
+	}
 	exit(1);
 }
