@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 22:50:34 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/04/30 22:50:58 by dmendonc         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:40:50 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ void    WebS::error_handler(int type, int subtype)
 	}
 	else if (type == 5)
 	{
-		//bind and listen errors
+		if (subtype == 0)
+			std::cout << "error on binding" << std::endl;
+		else if (subtype == 1)
+			std::cout << "error on listening" << std::endl;
 	}
 	exit(1);
 }

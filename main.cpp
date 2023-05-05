@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:23:45 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/04/30 23:13:10 by dmendonc         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:55:09 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,17 @@
 
 int main(int argc, char *argv[])
 {
-	WebS	WS;
-	SAdd	WS_addr;
-	int			sendbytes;
+	WebS		WS;
+	SAdd		SAddr;
+	SAdd_in		SAddr_in;
+	//int		sendbytes;
 	std::string	sendline;
 
-	starting(argc, argv, &WS, &WS_addr);
-	connecting(argv, &WS, &WS_Addr);
-	send_message(sendbytes, sendline, &WS, &WS_Addr);
+	if (argv[0] == NULL)
+		exit(1);
+	if (argc != 2)
+		WS.error_handler(0,0);
+	starting(&WS, &SAddr, &SAddr_in);
+	std::cout << "bind and listen starts" << std::endl;
+	bind_and_listen(&WS, &SAddr_in);
 }

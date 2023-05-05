@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Webserver.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 03:44:41 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/04/30 23:13:22 by dmendonc         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:12:54 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # define MAX_INT 1000
 
 # include "Librarys.hpp"
-# include "SockAddr.hpp"
 
 class WebS
 {
@@ -26,9 +25,17 @@ class WebS
 		int		get_sockfd();
 	private:
 		int	sock_fd;
-
 };
 
-void	set_WS_Addr(struct sockaddr_in *WS_Addr);
-void	starting(int argc, char *argv[], WebS *WS, struct sockaddr_in *WS_Addr);
+// functions to set socket's address
+void	set_SAddr(SAdd *SAddr);
+void	set_SAddr_in(SAdd_in *SA);
+
+char	*binary_to_hex(SAdd_in *SAddr_in);
+void	starting(WebS *WS, SAdd *SAddr, SAdd_in *SAddr_in);
+
+void	bind_and_listen(WebS *WS, SAdd_in *SAddr_in);
+void	connecting(char *argv[], WebS *WS, SAdd_in *SAddr_in);
+void	send_message(std::string sendline, int sendbytes, WebS *WS);
+
 #endif

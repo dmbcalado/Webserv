@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+         #
+#    By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/31 15:01:42 by ratinhosujo       #+#    #+#              #
-#    Updated: 2023/04/30 22:55:09 by dmendonc         ###   ########.fr        #
+#    Updated: 2023/05/05 15:17:26 by ratinhosujo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,14 @@ GPP = c++
 
 NAME = webserv
 
-SRCS = main.cpp \
+SRCS = CPU_Work/utils.cpp \
 	   CPU_Work/starting.cpp \
-	   CPU_Work/SockAddr.cpp \
+	   CPU_Work/WebServer.cpp \
+	   CPU_Work/SetSockAddr.cpp \
 	   CPU_Work/error_handler.cpp \
-	   CPU_Work/WebServer.cpp
+	   IO_Work/bind_nd_listen.cpp \
+	   IO_Work/connect_nd_send.cpp \
+	   main.cpp
 
 OBJS = $(SRCS: .cpp = .o)
 

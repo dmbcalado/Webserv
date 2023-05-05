@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   SockAddr.cpp                                       :+:      :+:    :+:   */
+/*   SetSockAddr.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 21:31:52 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/04/30 22:32:18 by dmendonc         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:35:18 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,15 @@
 //             it must be specified in direct binary format, so a conversion 
 //			   to this data type must be done to assign a value to it.
 
-void	set_WS_Addr(struct sockaddr_in *WS_Addr)
+void	set_SAddr(SAdd *SAddr)
 {
-	WS_Addr->sin_family = AF_INET;
-	WS_Addr->sin_port = htons(SOCK_STREAM);
-	WS_Addr->sin_addr.s_addr = htonl(INADDR_ANY);
+	SAddr->sa_family = AF_INET;
+	//SAddr->sa_data = htons(SOCK_STREAM);
+}
+
+void	set_SAddr_in(SAdd_in *SAddr_in)
+{
+	SAddr_in->sin_family = AF_INET;
+	SAddr_in->sin_port = htons(SOCK_STREAM);
+	SAddr_in->sin_addr.s_addr = htonl(INADDR_ANY);
 }
