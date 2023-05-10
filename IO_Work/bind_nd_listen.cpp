@@ -6,39 +6,33 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 09:43:12 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/05/05 15:48:28 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/05/09 14:03:52 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../Headers/Webserver.hpp"
 
-void	bind_and_listen(WebS *WS, SAdd_in *SAddr_in)
+void	bind_and_listen(WebS *WS, SAdd_in *SAddr_in, int listen_fd)
 {
-	//SAdd		SAddr;
 	int			n, conn_fd;
-	std::string	recvline, buffer;
+	char		recvline[4096];
+	std::string	buffer;
+	int			addrlen = sizeof(&SAddr_in);
 
-	//SAddr.sa_family = AF_INET;
-
-	if (bind(WS->get_sockfd(), (SAdd *)&SAddr_in, sizeof(SAddr_in)) < 0)
-		WS->error_handler(5,0);
-	if (listen(WS->get_sockfd(), 10) < 0)
-		WS->error_handler(5,1);
 	while(1)
 	{
-		//SAdd		new_addr;
-		//socklen_t	addr_len;
 		std::cout << "waiting for a connection on port" << SERVERPORT << "\n";
-		fflush(stdout);
-		conn_fd = accept(WS->get_sockfd(), (SAdd *) NULL, NULL);
-		memset((void *)recvline.c_str(), 0, BUFFERSIZE);
-		while((n = read(conn_fd, (void *)recvline.c_str(), BUFFERSIZE-1)) > 0)
+		//fflush(stdout);
+		if ((conn_fd = accept(listen_fd, (SAdd *)&SAddr_in, (socklen_t*)&addrlen)) < 0)
+			std::cout << "error here" << std::endl;
+		memset(recvline, 0, BUFFERSIZE);
+		while((n = read(conn_fd, recvline, BUFFERSIZE-1)) > 0)
 		{
-			fprintf(stdout, "\n%s\n\n%s", binary_to_hex(SAddr_in), (char *)recvline.c_str());
+			fprintf(stdout, "\n%s\n\n%s", binary_to_hex(SAddr_in), recvline);
 			if (recvline[n - 1] == '\n')
 				break;
 		}
-		memset((void *)recvline.c_str(), 0, BUFFERSIZE);
+		memset(recvline, 0, BUFFERSIZE);
 		if (n < 0)
 			WS->error_handler(4, 1); // read
 		//
