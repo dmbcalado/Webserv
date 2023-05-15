@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 14:23:45 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/05/09 15:17:15 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/05/15 16:02:43 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ int main(int argc, char *argv[])
 	WebS		WS;
 	//SAdd		SAddr;
 	SAdd_in		SAddr_in;
-	int			listen_fd, conn_fd;
+	int			n, listen_fd, conn_fd;
 	std::string	sendline, buffer;
 	char		recvline[4096];
-	//int			addrlen = sizeof(SAddr_in);
-
 	if (argv[0] == NULL)
 		exit(1);
 	if (argc != 2)
@@ -57,12 +55,12 @@ int main(int argc, char *argv[])
 			std::cout << "error here" << std::endl;
 		std::cout << "ca vida ta dura" << std::endl;
 		memset(recvline, 0, BUFFERSIZE - 1);
-		// while((n = read(conn_fd, recvline, BUFFERSIZE-1)) > 0)
-		// {
-		// 	fprintf(stdout, "\n%s\n\n%s", binary_to_hex(&SAddr_in), recvline);
-		// 	if (recvline[n - 1] == '\n')
-		// 		break;
-		// }
+		while((n = read(conn_fd, recvline, BUFFERSIZE-1)) > 0)
+		{
+			fprintf(stdout, "\n%s\n\n%s", binary_to_hex(&SAddr_in), recvline);
+			if (recvline[n - 1] == '\n')
+				break;
+		}
 		memset(recvline, 0, BUFFERSIZE);
 		// if (n < 0)
 		// 	WS.error_handler(4, 1); // read
